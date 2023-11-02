@@ -33,7 +33,9 @@
     <h2>You have visited this website using server port: <?php echo $server_port; ?>.</h2>
     <p>The purpose of this site is to test if you are able to establish a three way handshake to this server using a specific port.</p>
     <p>If this page helped you diagnose a network problem, consider buying me some coffee. (insert link here maybe?)</p>
-
+    <p>Click the button below to download a sample file:</p>
+     <a href="sample.zip" download="sample.zip">
+    <button>Download File</button>
 
 
 
