@@ -21,3 +21,27 @@ RETURN     tcp  --  anywhere             anywhere             tcp dpt:http
 RETURN     tcp  --  anywhere             anywhere             tcp dpt:smtp
 RETURN     tcp  --  anywhere             anywhere             tcp dpt:ftp
 RETURN     tcp  --  anywhere             anywhere             tcp dpt:ssh
+
+table ip nat {
+	chain PREROUTING {
+		type nat hook prerouting priority dstnat; policy accept;
+		iifname "lo" counter packets 0 bytes 0 return
+		iifname "lo" counter packets 0 bytes 0 return
+		iifname "lo" counter packets 0 bytes 0 return
+		iifname "lo" counter packets 0 bytes 0 return
+		meta l4proto tcp tcp dport 1-21 counter packets 0 bytes 0 dnat to 10.110.0.20:80
+		meta l4proto tcp tcp dport 23-65535 counter packets 413226 bytes 23684978 dnat to 10.110.0.20:80
+	}
+
+	chain INPUT {
+		type nat hook input priority 100; policy accept;
+	}
+
+	chain OUTPUT {
+		type nat hook output priority -100; policy accept;
+	}
+
+	chain POSTROUTING {
+		type nat hook postrouting priority srcnat; policy accept;
+	}
+}
