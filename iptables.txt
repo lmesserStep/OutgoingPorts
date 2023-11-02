@@ -29,8 +29,8 @@ table ip nat {
 		iifname "lo" counter packets 0 bytes 0 return
 		iifname "lo" counter packets 0 bytes 0 return
 		iifname "lo" counter packets 0 bytes 0 return
-		meta l4proto tcp tcp dport 1-21 counter packets 0 bytes 0 dnat to 10.110.0.20:80
-		meta l4proto tcp tcp dport 23-65535 counter packets 413226 bytes 23684978 dnat to 10.110.0.20:80
+		meta l4proto tcp tcp dport 1-21 counter packets 0 bytes 0 dnat to ip:80
+		meta l4proto tcp tcp dport 23-65535 counter packets 413226 bytes 23684978 dnat to ip:80
 	}
 
 	chain INPUT {
